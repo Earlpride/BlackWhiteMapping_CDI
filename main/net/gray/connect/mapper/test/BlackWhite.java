@@ -34,12 +34,23 @@ public class BlackWhite {
 			//Mapping DTOs to entities
 			BlackEntity blackEntity = blackMapper.toEntity(blackDto);
 			WhiteEntity whiteEntity = whiteMapper.toEntity(whiteDto);
-			
+
 			//Printing entities
 			System.out.println("###########################################");
 			printObjectToConsole("blackEntity", blackEntity);
 			System.out.println("###########################################");
 			printObjectToConsole("whiteEntity", whiteEntity);
+			System.out.println("###########################################");
+			
+			//Mapping entities to DTOs
+			blackDto = blackMapper.toDto(blackEntity);
+			whiteDto = whiteMapper.toDto(whiteEntity);
+
+			//Printing DTOs
+			System.out.println("###########################################");
+			printObjectToConsole("blackDto", blackDto);
+			System.out.println("###########################################");
+			printObjectToConsole("whiteDto", whiteDto);
 			System.out.println("###########################################");
 		} catch(NullPointerException npe) {
 			throw new RuntimeException(npe);
