@@ -1,0 +1,54 @@
+package net.gray.connect.mapper.test.mapstruct;
+
+import net.gray.connect.mapper.test.mapstruct.MapperLocator;
+import net.gray.connect.mapper.test.mapstruct._MainTestUtils;
+
+import net.gray.connect.mapper.test.mapstruct.dto.BlackDto;
+import net.gray.connect.mapper.test.mapstruct.dto.WhiteDto;
+import net.gray.connect.mapper.test.mapstruct.entity.BlackEntity;
+import net.gray.connect.mapper.test.mapstruct.entity.WhiteEntity;
+import net.gray.connect.mapper.test.mapstruct.mapper.IBlackMapper;
+import net.gray.connect.mapper.test.mapstruct.mapper.IWhiteMapper;
+
+public class BlackWhite {
+	private static final BlackWhiteUtils MAIN_TEST_UTILS = new BlackWhiteUtils(_MainTest.class.getClassLoader());
+	
+	public static void main(String[] args) {
+    //Converting JSON file to string
+		String blackDtoJsonString = MAIN_TEST_UTILS.convertJsonToString("black/Black_Nesting-0_Test-File.json");
+		String whiteDtoJsonString = MAIN_TEST_UTILS.convertJsonToString("white/White_Nesting-0_Test-File.json");
+
+    //Converting string to DTO
+		BlackDto blackDto = (BlackDto) MAIN_TEST_UTILS.createDto(blackDtoJsonString, BlackDto.class);
+		WhiteDto whiteDto = (WhiteDto) MAIN_TEST_UTILS.createDto(whiteDtoJsonString, WhiteDto.class);
+
+    //Printing DTOs
+    System.out.println("###########################################");
+    System.out.println("Black DTO");
+    System.out.println(blackDto.toJsonString());
+    System.out.println("###########################################");
+    System.out.println("White DTO");
+    System.out.println(whiteDto.toJsonString());
+
+		try {
+      //MapperLocator containing injected mappers to allow usage of them in static `main()`
+			MapperLocator mapperLocator = new MapperLocator();
+			IBlackMapper blackMapper = mapperLocator.getBlackMapper();
+			IWhiteMapper whiteMapper = mapperLocator.getWhiteMapper();
+
+      //Mapping DTOs to entities
+			BlackEntity blackEntity = blackMapper.toEntity(blackDto);
+			WhiteEntity whiteEntity = whiteMapper.toEntity(whiteDto);
+			
+			System.out.println("###########################################");
+			System.out.println("Black Entity");
+      System.out.println(blackEntity.toJsonString());
+			System.out.println("###########################################");
+			System.out.println("White Entity");
+      System.out.println(whiteEntity.toJsonString());
+			System.out.println("###########################################");
+		} catch(NullPointerException npe) {
+			throw new RuntimeException(npe);
+		}
+	}
+}
