@@ -7,9 +7,9 @@ import jakarta.inject.Inject;
 
 public class MapperLocator {
 	@Inject
-	private IBlackMapper blackMapper;
+	IBlackMapper blackMapper;
 	@Inject
-	private IWhiteMapper whiteMapper;
+	IWhiteMapper whiteMapper;
 	
 	public IBlackMapper getBlackMapper() {
 		return blackMapper;
