@@ -1,4 +1,4 @@
-package net.gray.connect.mapper.test;
+package net.gray.connect.mapper.test.mapstruct;
 
 import net.gray.connect.mapper.test.mapstruct.mapper.IBlackMapper;
 import net.gray.connect.mapper.test.mapstruct.mapper.IWhiteMapper;
