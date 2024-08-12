@@ -3,6 +3,7 @@ package net.gray.connect.mapper.test.mapstruct.mapper;
 import net.gray.connect.mapper.test.mapstruct.dto.BlackDto;
 import net.gray.connect.mapper.test.mapstruct.entity.BlackEntity;
 
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
