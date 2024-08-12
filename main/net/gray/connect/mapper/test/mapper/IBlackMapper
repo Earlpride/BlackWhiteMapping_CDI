@@ -5,13 +5,9 @@ import net.gray.connect.mapper.test.mapstruct.entity.BlackEntity;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(uses = IWhiteMapper.class, componentModel = "jakarta-cdi", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface IBlackMapper {
-	IBlackMapper INSTANCE = Mappers.getMapper(IBlackMapper.class);
-	
+public interface IBlackMapper {	
 	BlackEntity toEntity(BlackDto dto);
-	
 	BlackDto toDto(BlackEntity entity);
 }
