@@ -12,22 +12,20 @@ import net.gray.connect.mapper.test.mapstruct.mapper.IWhiteMapper;
 
 public class BlackWhite {	
 	public static void main(String[] args) {
-    	//Creating DTOs - Reference chain: blackDto1 -> whiteDto1 -> null
-	WhiteDto whiteDto = new WhiteDto();
-	whiteDto.setGermanName("weiss_1");
-	
-	BlackDto blackDto = new BlackDto();
-	blackDto.setGermanName("schwarz_1");
-	blackDto.setWhite(whiteDto);
-	
-	//Printing DTOs
-	System.out.println("###########################################");
-	System.out.println("Black DTO");
-	System.out.println(blackDto.toJsonString());
-	System.out.println("###########################################");
-	System.out.println("White DTO");
-	System.out.println(whiteDto.toJsonString());
-	try {
+    		//Creating DTOs - Reference chain: blackDto1 -> whiteDto1 -> null
+		WhiteDto whiteDto = new WhiteDto();
+		whiteDto.setGermanName("weiss_1");
+		
+		BlackDto blackDto = new BlackDto();
+		blackDto.setGermanName("schwarz_1");
+		blackDto.setWhite(whiteDto);
+
+		//Printing DTOs
+		System.out.println("###########################################");
+		printObjectToConsole("blackDto", blackDto);
+		System.out.println("###########################################");
+		printObjectToConsole("whiteDto", whiteDto);
+		try {
 			//MapperLocator containing injected mappers to allow usage of them in static `main()`
 			MapperLocator mapperLocator = new MapperLocator();
 			IBlackMapper blackMapper = mapperLocator.getBlackMapper();
@@ -39,11 +37,9 @@ public class BlackWhite {
 			
 			//Printing entities
 			System.out.println("###########################################");
-			System.out.println("Black Entity");
-			System.out.println(blackEntity.toJsonString());
+			printObjectToConsole("blackEntity", blackEntity);
 			System.out.println("###########################################");
-			System.out.println("White Entity");
-			System.out.println(whiteEntity.toJsonString());
+			printObjectToConsole("whiteEntity", whiteEntity);
 			System.out.println("###########################################");
 		} catch(NullPointerException npe) {
 			throw new RuntimeException(npe);
