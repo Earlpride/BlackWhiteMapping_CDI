@@ -56,4 +56,13 @@ public class BlackWhite {
 			throw new RuntimeException(npe);
 		}
 	}
+
+	private static void printObjectToConsole(String name, Object obj) {
+		try {
+			String jsonString = om.writeValueAsString(obj);
+			System.out.println(name + ":\n" + jsonString + "\n");
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
